@@ -1,7 +1,7 @@
 ---
 title: "New Year, New Blog"
 description: "Why I decided to use Astro, and how to get started"
-pubDate: "Feb 13 2024"
+pubDate: "Feb 14 2024"
 heroImage: "/blog-placeholder-2.jpg"
 ---
 
@@ -11,7 +11,7 @@ Okay, it's probably a bit late in the year to be using that title, but hey, bett
 
 My reason for using Astro is a bit free spirited (for me, at least).
 
-Last summer, I wanted to build a doc site for my Astro Van project. I had used Gatsby for previous projects, but wasn't head over heels for it, so I looked around at static site generators and content-focused frameworks, which led me to Astro. Given the name matched the model of my van, I had to give it a go, and launched [astrovan.info](https://astrovan.info/). In the process, I found Astro to be lightweight, straightforward to work with, and well-documented, so I stuck with it!
+Last summer, I wanted to build a doc site for my Astro Van pet project. I had used Gatsby for previous projects, but wasn't head over heels for it, so I looked around at other static site generators and content-focused frameworks, which led me to Astro. Given the name matched the model of my van, I had to give it a go, and launched [astrovan.info](https://astrovan.info/). In the process, I found Astro to be lightweight, straightforward to work with, and, best of all, well-documented.
 
 Now, here's how easy it is to get one of these blogs off the ground...
 
@@ -21,7 +21,7 @@ Now, here's how easy it is to get one of these blogs off the ground...
 npm create astro@latest
 ```
 
-<br>
+Astro's ClI might be the best CLI I've ever used. It makes setting up a project crazy easy.
 
 #### Pick a Theme, Any Theme
 
@@ -31,7 +31,7 @@ If you opt to use one of [Astro's prebuilt themes](https://astro.build/themes/) 
 npm create astro@latest -- --template blog
 ```
 
-(I chose one of Astro's official themes, since I knew I'd want to style things my way and was really just looking for a baseline to get started.)
+I chose one of Astro's official themes, since I knew I'd want to style things my way and was really just looking for a baseline to get started.
 
 #### Fire It Up!
 
@@ -55,11 +55,11 @@ After:
 
 ![Website with Astro Transitions (much better)](../../../public/website-transitions-after.gif)
 
-#### Deploy, Deploy!
+#### Deploy!
 
-There’s no shortage of places to host a static page, but Cloudflare’s offering was especially compelling as they offer free, privacy-respecting analytics. I tested it out using my Astro Van website, and found it straightforward to use, so I stuck with that for this site.
+There’s no shortage of places to host a static website, but Cloudflare’s offering was especially compelling as they offer free, privacy-respecting analytics. I tested it out using my Astro Van website, and found it straightforward to use, so I stuck with that for this site.
 
-All you have to do is link up Cloudflare and your project on Github and Cloudflare will automatically deploy when changes are pushed. It's a fantastic combo once the initial setup is done. Write markdown, commit, push, done.
+All you have to do is link up Cloudflare Pages and your project on Github and Cloudflare will automatically deploy when changes are pushed. It's a fantastic combo once the initial setup is done. Write markdown, commit, push, done.
 
 Cloudflare already has a guide on deploying an Astro project, so instead of rewriting the book, I'll just link to it [here](https://developers.cloudflare.com/pages/framework-guides/deploy-an-astro-site/).
 
