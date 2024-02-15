@@ -9,7 +9,7 @@ Okay, it's probably a bit late in the year to be using that title, but hey, bett
 
 #### Why Astro?
 
-My reason for using Astro is a bit free spirited (for me, at least).
+My reason for using Astro is a bit free spirited (for me).
 
 Last summer, I wanted to build a doc site for my Astro Van pet project. I had used Gatsby for previous projects, but wasn't head over heels for it, so I looked around at other static site generators and content-focused frameworks, which led me to Astro. Given the name matched the model of my van, I had to give it a go, and launched [astrovan.info](https://astrovan.info/). In the process, I found Astro to be lightweight, straightforward to work with, and, best of all, well-documented.
 
@@ -21,7 +21,7 @@ Now, here's how easy it is to get one of these blogs off the ground...
 npm create astro@latest
 ```
 
-Astro's ClI might be the best CLI I've ever used. It makes setting up a project crazy easy.
+Side note: Astro's CLI might be the best CLI I've ever used. It makes setting up a project crazy easy.
 
 #### Pick a Theme, Any Theme
 
@@ -54,6 +54,8 @@ Before:
 After:
 
 ![Website with Astro Transitions (much better)](../../../public/website-transitions-after.gif)
+
+Note: Only Chrome supports the View Transitions API at this point, so the site uses the original navigation style in Safari and Firefox.
 
 #### Deploy!
 
