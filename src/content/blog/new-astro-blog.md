@@ -13,7 +13,7 @@ My reason for using Astro is a bit free spirited (for me).
 
 Last summer, I wanted to build a doc site for my Astro Van pet project. I had used Gatsby for previous projects, but wasn't head over heels for it, so I looked around at other static site generators and content-focused frameworks, which led me to Astro. Given the name matched the model of my van, I had to give it a go, and launched [astrovan.info](https://astrovan.info/). In the process, I found Astro to be lightweight, straightforward to work with, and, best of all, well-documented.
 
-Now, here's how easy it is to get one of these blogs off the ground...
+Now, here's how easy it is to get one of these Astro blogs off the ground...
 
 #### Install Astro's CLI
 
@@ -43,7 +43,7 @@ npm run dev
 
 Your project will be live at `localhost:3000`, or `localhost:4321` if you're running the latest version of Astro.
 
-#### Transitions, Baby (Optional)
+#### Transitions (Optional)
 
 I saw an early blog post from Astro featuring their transitions for the [View Transitions API](https://developer.mozilla.org/en-US/docs/Web/API/View_Transitions_API) and knew I had to have that on my site. So before anything else, I implemented `<ViewTransitions />` in a shared component so all navigation had that slick feel.
 
@@ -61,7 +61,7 @@ Note: Only Chrome supports the View Transitions API at this point, so the site u
 
 There’s no shortage of places to host a static website, but Cloudflare’s offering was especially compelling as they offer free, privacy-respecting analytics. I tested it out using my Astro Van website, and found it straightforward to use, so I stuck with that for this site.
 
-All you have to do is link up Cloudflare Pages and your project on Github and Cloudflare will automatically deploy when changes are pushed. It's a fantastic combo once the initial setup is done. Write markdown, commit, push, done.
+All you have to do is link up Cloudflare Pages and your repo on Github and Cloudflare will automatically deploy when changes are pushed or merged. It's a fantastic combo once the initial setup is done. Write markdown, commit, push, done.
 
 Cloudflare already has a guide on deploying an Astro project, so instead of rewriting the book, I'll just link to it [here](https://developers.cloudflare.com/pages/framework-guides/deploy-an-astro-site/).
 
