@@ -23,7 +23,7 @@ Spoiler alert: The fix is to force React to reset state in one of two ways. Per 
 
 <br>
 
-#### Enter `key` (play on words, sorry)
+#### Enter `key` (more play on words, sorry)
 
 I needed to render new question cards in the same DOM position to keep things tidy, so I went the `key` route, like so:
 
