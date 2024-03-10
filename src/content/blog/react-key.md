@@ -7,25 +7,25 @@ heroImage: "/blog-placeholder-2.jpg"
 
 TL;DR: React will re-use an instance of a component (sharing state in the process) if you do not set the `key` attribute to differentiate identical components in the same DOM position.
 
-Example:
+#### Context:
 
-I was trying to render a list of QuestionCard elements for my trivia web app, but when a new question was rendered, it would have the button state from the previous card. Initially, I thought I had made a mistake with props, but it was actually React "reconciliation", where React will reuse a component instance if it doesn't detect the location of a component change.
+I was trying to render a list of QuestionCard elements for my trivia web app, but when a new question was rendered, it would have the button state from the previous card. Initially, I thought I had made a mistake with props, but it was actually React's [reconciliation](https://legacy.reactjs.org/docs/reconciliation.html), where React will reuse an instance of a component if it can.
 
-The fix is to force React to reset state. Per the React docs:
+Spoiler alert: The fix is to force React to reset state in one of two ways. Per the React docs:
 
 > There are two ways to reset state when switching between them:
 >
 > - Render components in different positions
 > - Give each component an explicit identity with key<br>
->   — <cite>[React docs](https://react.dev/learn/preserving-and-resetting-state)</cite>
 
-Additionally,
+> - You can force a subtree to reset its state by giving it a different key<br>
+>   — <cite>[React.dev](https://react.dev/learn/preserving-and-resetting-state)</cite>
 
-> - You can force a subtree to reset its state by giving it a different key
+<br>
 
-**Enter `key` (more play on words)**
+#### Enter `key` (play on words, sorry)
 
-For my use case (rendering new QuestionCard elements in the same position in the DOM), I went the `key` route, like so:
+I needed to render new question cards in the same DOM position to keep things tidy, so I went the `key` route, like so:
 
 ```
 <div key={`${props.index}`}>
@@ -33,7 +33,7 @@ For my use case (rendering new QuestionCard elements in the same position in the
 
 <br>
 
-#### Original
+##### Before
 
 Rendering a list of QuestionCard elements (sans `index` prop):
 
@@ -46,7 +46,7 @@ Rendering a list of QuestionCard elements (sans `index` prop):
   ));
 ```
 
-#### The fix
+##### After
 
 Passing `index` prop and setting it inside of QuestionCard:
 
@@ -69,4 +69,4 @@ JSX inside of QuestionCard:
             ...
 ```
 
-I'm pretty sure I've hit this problem before, so I decided to write a quick blurb on the "why" behind it so I'd be less likely to forget next time. Hopefully it was helpful!
+I'm pretty sure I've hit this problem before, so I decided to write a quick blurb on the “why” behind it, so I'd be less likely to forget next time. Hopefully it was helpful!
