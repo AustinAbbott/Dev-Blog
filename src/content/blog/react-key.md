@@ -19,7 +19,8 @@ Spoiler alert: The fix is to force React to reset state in one of two ways. Per 
 > - Give each component an explicit identity with key<br>
 
 > - You can force a subtree to reset its state by giving it a different key<br>
->   — <cite>[React.dev](https://react.dev/learn/preserving-and-resetting-state)</cite>
+
+— <cite>[React.dev - Preserving and Resetting State](https://react.dev/learn/preserving-and-resetting-state)</cite>
 
 <br>
 
@@ -28,7 +29,8 @@ Spoiler alert: The fix is to force React to reset state in one of two ways. Per 
 I needed to render new question cards in the same DOM position to keep things tidy, so I went the `key` route, like so:
 
 ```
-<div key={`${props.index}`}>
+  // React key to differentiate cards
+  key={props.index}
 ```
 
 <br>
@@ -63,10 +65,13 @@ Passing `index` prop and setting it inside of QuestionCard:
 JSX inside of QuestionCard:
 
 ```
-    <div key={`${props.index}`}>
-      <div>
-        <div className="question-container">
-            ...
+  return (
+    <TrueOrFalseCard
+      incrementIndex={props.incrementIndex}
+      key={props.index}
+      questionData={props.questionData}
+    />
+  );
 ```
 
 I'm pretty sure I've hit this problem before, so I decided to write a quick blurb on the “why” behind it, so I'd be less likely to forget next time. Hopefully it was helpful!
