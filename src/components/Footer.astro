@@ -3,10 +3,12 @@ const today = new Date();
 ---
 
 <footer>
-  &copy; {today.getFullYear()} Austin Abbott. All rights reserved.
+  <span>
+    &copy; {today.getFullYear()} Austin Abbott. All rights reserved.
+  </span>
   <div class="social-links">
-    <a href="https://github.com/AustinAbbott/Dev-Blog" target="_blank">
-      <span class="sr-only">Go to dev blog Github repository</span>
+    <a href="https://github.com/AustinAbbott/dev-blog" target="_blank">
+      <span class="sr-only">Go to Austin Abbott's GitHub</span>
       <svg
         viewBox="0 0 16 16"
         aria-hidden="true"
@@ -19,6 +21,38 @@ const today = new Date();
         ></path></svg
       >
     </a>
+
+    <span>
+      <a class="tech-icon" href="https://astro.build/" target="_blank">
+        <svg
+          fill="currentColor"
+          role="img"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <title>Astro</title>
+          <path
+            fill="currentColor"
+            d="M8.358 20.162c-1.186-1.07-1.532-3.316-1.038-4.944.856 1.026 2.043 1.352 3.272 1.535 1.897.283 3.76.177 5.522-.678.202-.098.388-.229.608-.36.166.473.209.95.151 1.437-.14 1.185-.738 2.1-1.688 2.794-.38.277-.782.525-1.175.787-1.205.804-1.531 1.747-1.078 3.119l.044.148a3.158 3.158 0 0 1-1.407-1.188 3.31 3.31 0 0 1-.544-1.815c-.004-.32-.004-.642-.048-.958-.106-.769-.472-1.113-1.161-1.133-.707-.02-1.267.411-1.415 1.09-.012.053-.028.104-.045.165h.002zm-5.961-4.445s3.24-1.575 6.49-1.575l2.451-7.565c.092-.366.36-.614.662-.614.302 0 .57.248.662.614l2.45 7.565c3.85 0 6.491 1.575 6.491 1.575L16.088.727C15.93.285 15.663 0 15.303 0H8.697c-.36 0-.615.285-.784.727l-5.516 14.99z"
+          >
+          </path>
+        </svg>
+      </a>
+      <a class="tech-icon" href="https://pages.cloudflare.com" target="_blank">
+        <svg
+          fill="currentColor"
+          role="img"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <title>Cloudflare Pages</title>
+          <path
+            fill="currentColor"
+            d="M10.715 14.32H5.442l-.64-1.203L13.673 0l1.397.579-1.752 9.112h5.24l.648 1.192L10.719 24l-1.412-.54ZM4.091 5.448a.5787.5787 0 1 1 0-1.1574.5787.5787 0 0 1 0 1.1574zm1.543 0a.5787.5787 0 1 1 0-1.1574.5787.5787 0 0 1 0 1.1574zm1.544 0a.5787.5787 0 1 1 0-1.1574.5787.5787 0 0 1 0 1.1574zm8.657-2.7h5.424l.772.771v16.975l-.772.772h-7.392l.374-.579h6.779l.432-.432V3.758l-.432-.432h-4.676l-.552 2.85h-.59l.529-2.877.108-.552ZM2.74 21.265l-.772-.772V3.518l.772-.771h7.677l-.386.579H2.98l-.432.432v16.496l.432.432h5.586l-.092.579zm1.157-1.93h3.28l-.116.58h-3.55l-.192-.193v-3.473l.578 1.158zm13.117 0 .579.58H14.7l.385-.58z"
+          ></path>
+        </svg>
+      </a>
+    </span>
   </div>
 </footer>
 
@@ -29,16 +63,28 @@ const today = new Date();
     color: rgb(var(--gray));
     text-align: center;
   }
+
   .social-links {
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    gap: 1em;
     margin-top: 1em;
   }
+
+  .social-links .tech-icon svg {
+    width: 20px;
+    color: rgb(var(--gray));
+  }
+
+  .social-links .tech-icon svg:hover {
+    color: rgb(var(--gray-dark));
+  }
+
   .social-links a {
     text-decoration: none;
     color: rgb(var(--gray));
   }
+
   .social-links a:hover {
     color: rgb(var(--gray-dark));
   }
