@@ -22,6 +22,7 @@ Some notable sites I've noticed are BAT-certified:
 - [Tor](https://www.torproject.org/)
 - [Qwant](https://www.qwant.com/)
 - [Wikipedia](https://en.wikipedia.org/)
+- [Web Archive](https://web.archive.org/)
 
 According to Brave, I've visited 11 sites supported by Brave Rewards this month:
 
