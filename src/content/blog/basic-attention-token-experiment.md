@@ -15,6 +15,7 @@ With that out of the way, here's what is involved in being a Brave "Creator":
 
 Some notable sites I've noticed are BAT-certified:
 
+- [AlternativeTo](https://alternativeto.net/)
 - [freeCodeCamp](https://www.freecodecamp.org/)
 - [KhanAcademy](https://www.khanacademy.org/)
 - [Material UI](https://mui.com/)
