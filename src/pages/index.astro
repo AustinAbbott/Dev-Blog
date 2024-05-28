@@ -3,6 +3,12 @@ import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+import { getCollection } from "astro:content";
+import FormattedDate from "../components/FormattedDate.astro";
+
+const posts = (await getCollection("blog"))
+  .slice(0, 3)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 
 <!doctype html>
@@ -13,12 +19,30 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
   <body>
     <Header />
     <main>
-      <h1>Hey there 👋</h1>
-      <p>I'm Austin Abbott, welcome to my developer blog!</p>
-      <p>
-        Things are a bit empty right now, but stick around, updates are coming
-        🚧
-      </p>
+      <section>
+        <h1>Hey there 👋</h1>
+        <p>I'm Austin Abbott, welcome to my dev blog!</p>
+      </section>
+
+      <section>
+        <h4>Recent posts</h4>
+        <div>
+          <ul>
+            {
+              posts.map((post) => (
+                <li>
+                  <a href={`/blog/${post.slug}/`}>
+                    <h5 class="title">{post.data.title}</h5>
+                    <p class="date">
+                      <FormattedDate date={post.data.pubDate} />
+                    </p>
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </section>
     </main>
     <Footer />
   </body>
