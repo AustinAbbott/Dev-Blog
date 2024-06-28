@@ -2,7 +2,7 @@
 title: "Tidbit: How to Set Selected Option with React Testing Library"
 description: "A quick example of how to set the selected option of a select element using Testing Library"
 pubDate: "Jun 28 2024"
-heroImage: "/blog-placeholder-5.jpg"
+heroImage: "/tidbit-header.png"
 ---
 
 Yet another easy-to-forget-and-difficult-to-find answer. I was trying to remember how to set the selected option of a `select` element, and with [Testing Library](https://testing-library.com/) it's as simple as this:
