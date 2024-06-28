@@ -2,7 +2,7 @@
 title: "Tidbit: How to Right-Align Content of a Single Grid Column"
 description: "A quick example of aligning stuff with grid and grid-template-columns"
 pubDate: "Jun 7 2024"
-heroImage: "/blog-placeholder-4.jpg"
+heroImage: "/tidbit-header.png"
 ---
 
 I always end up searching for this online, so adding a quick tidbit to save myself time down the road.
