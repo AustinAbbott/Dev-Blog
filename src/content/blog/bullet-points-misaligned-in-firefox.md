@@ -2,7 +2,7 @@
 title: "Issue: Bullet Points are Misaligned in Firefox"
 description: "A quick guide to fixing misaligned bullet points in Firefox"
 pubDate: "Jul 5 2024"
-heroImage: "/src/firefox-header.jpg"
+heroImage: "/src/images/firefox-header.jpg"
 ---
 
 #### Problem
