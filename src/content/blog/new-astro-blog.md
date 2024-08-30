@@ -49,11 +49,11 @@ I saw an early blog post from Astro featuring their transitions for the [View Tr
 
 Before:
 
-![Website without Astro Transitions](../../../public/website-transitions-before.gif)
+![Website without Astro Transitions](../../../src/images/website-transitions-before.gif)
 
 After:
 
-![Website with Astro Transitions (much better)](../../../public/website-transitions-after.gif)
+![Website with Astro Transitions (much better)](../../../src/images/website-transitions-after.gif)
 
 Note: Only Chrome supports the View Transitions API at this point, so the site uses the original navigation style in Safari and Firefox.
 

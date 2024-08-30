@@ -15,7 +15,7 @@ You can fix misaligned bullet points in Firefox by wrapping the clickable elemen
 
 #### Example
 
-![Screenshot of misaligned bullets on austinabbott.dev](../../../public/misaligned-firefox-bullets.jpg)
+![Screenshot of misaligned bullets on austinabbott.dev](../../../src/images/misaligned-firefox-bullets.jpg)
 
 #### Code fix
 
