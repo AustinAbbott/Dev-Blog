@@ -2,7 +2,7 @@
 title: "Don't Forget Your Keys!"
 description: "Why your JSX components are sharing state and how to fix it"
 pubDate: "Mar 9 2024"
-heroImage: "/react-color.svg"
+heroImage: "../../../src/images/react-color.svg"
 ---
 
 TL;DR: React will re-use an instance of a component (sharing state in the process) if you do not set the `key` attribute to differentiate identical components in the same DOM position.

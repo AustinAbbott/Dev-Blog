@@ -2,7 +2,7 @@
 title: "New Year, New Blog"
 description: "Why I decided to use Astro, and how to get started"
 pubDate: "Feb 14 2024"
-heroImage: "/blog-placeholder-2.jpg"
+heroImage: "../../../src/images/blog-placeholder-2.jpg"
 ---
 
 Okay, it's probably a bit late in the year to be using that title, but hey, better late than never?
