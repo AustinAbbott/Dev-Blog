@@ -1,9 +1,11 @@
 ---
-import type { CollectionEntry } from "astro:content";
+import { Image } from "astro:assets";
 import BaseHead from "../components/BaseHead.astro";
-import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import FormattedDate from "../components/FormattedDate.astro";
+import Header from "../components/Header.astro";
+import type { CollectionEntry } from "astro:content";
+import { getImageFromLibrary } from "../utils";
 
 type Props = CollectionEntry<"blog">["data"];
 
@@ -68,7 +70,12 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
           <div class="hero-image">
             {
               heroImage && (
-                <img width={1020} height={510} src={heroImage} alt="" />
+                <Image
+                  alt={`Header image for post: ${title}`}
+                  height={510}
+                  src={getImageFromLibrary(heroImage)}
+                  width={1020}
+                />
               )
             }
           </div>
