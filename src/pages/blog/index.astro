@@ -1,10 +1,12 @@
 ---
-import BaseHead from "../../components/BaseHead.astro";
-import Header from "../../components/Header.astro";
-import Footer from "../../components/Footer.astro";
-import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
 import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
+import BaseHead from "../../components/BaseHead.astro";
+import Footer from "../../components/Footer.astro";
 import FormattedDate from "../../components/FormattedDate.astro";
+import Header from "../../components/Header.astro";
+import { getImageFromLibrary } from "../../utils";
 
 const posts = (await getCollection("blog")).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
@@ -95,12 +97,14 @@ const posts = (await getCollection("blog")).sort(
             posts.map((post) => (
               <li>
                 <a href={`/blog/${post.slug}/`}>
-                  <img
-                    width={720}
-                    height={360}
-                    src={post.data.heroImage}
-                    alt=""
-                  />
+                  {!!post.data.heroImage && (
+                    <Image
+                      alt={`Header image for post: ${post.data.title}`}
+                      height={360}
+                      src={getImageFromLibrary(post.data.heroImage)}
+                      width={720}
+                    />
+                  )}
                   <h4 class="title">{post.data.title}</h4>
                   <p class="date">
                     <FormattedDate date={post.data.pubDate} />
