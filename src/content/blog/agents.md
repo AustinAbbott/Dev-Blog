@@ -1,6 +1,6 @@
 ---
 title: "AGENTS.md"
-description: "A simple way to defined one codebase guideline for multiple agents"
+description: "A simple way to define one codebase guideline for multiple agents"
 pubDate: "Sep 1 2024"
 heroImage: "/src/images/blog-placeholder-2.jpg"
 ---
@@ -19,4 +19,4 @@ See AGENTS.md for codebase guidelines
 
 It's seriously that easy 😂
 
-For more context on AGENTS.md, see [agents.md](https://agents.md/)
+For more context on `AGENTS.md`, see [agents.md](https://agents.md/)
