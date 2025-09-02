@@ -1,7 +1,7 @@
 ---
 title: "AGENTS.md"
 description: "A simple way to define one codebase guideline for multiple agents"
-pubDate: "Sep 1 2024"
+pubDate: "Sep 1 2025"
 heroImage: "/src/images/blog-placeholder-2.jpg"
 ---
 
