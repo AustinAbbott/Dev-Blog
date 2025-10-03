@@ -100,7 +100,10 @@ const posts = (await getCollection("blog")).sort(
                   {!!post.data.heroImage && (
                     <Image
                       alt={`Header image for post: ${post.data.title}`}
+                      fit="cover"
                       height={360}
+                      layout="constrained"
+                      position="center"
                       src={getImageFromLibrary(post.data.heroImage)}
                       width={720}
                     />

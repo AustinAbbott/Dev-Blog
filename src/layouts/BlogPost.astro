@@ -72,7 +72,10 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
               heroImage && (
                 <Image
                   alt={`Header image for post: ${title}`}
+                  fit="cover"
                   height={510}
+                  layout="constrained"
+                  position="center"
                   src={getImageFromLibrary(heroImage)}
                   width={1020}
                 />
