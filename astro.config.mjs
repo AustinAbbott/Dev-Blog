@@ -7,4 +7,9 @@ import sitemap from "@astrojs/sitemap";
 export default defineConfig({
   site: "https://austinabbott.dev",
   integrations: [mdx(), sitemap()],
+  image: {
+    service: {
+      entrypoint: "astro/assets/services/sharp",
+    },
+  },
 });
