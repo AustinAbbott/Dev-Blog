@@ -1,5 +1,6 @@
 ---
 import HeaderLink from "./HeaderLink.astro";
+import ThemeToggleButton from "./ThemeToggleButton.astro";
 ---
 
 <header>
@@ -44,6 +45,7 @@ import HeaderLink from "./HeaderLink.astro";
           ></path></svg
         >
       </a>
+      <ThemeToggleButton />
     </div>
   </nav>
 </header>
@@ -51,7 +53,7 @@ import HeaderLink from "./HeaderLink.astro";
   header {
     margin: 0;
     padding: 0 1em;
-    background: white;
+    background: var(--surface-background);
     box-shadow: 0 2px 8px rgba(var(--black), 5%);
   }
 
@@ -101,6 +103,12 @@ import HeaderLink from "./HeaderLink.astro";
   .social-links,
   .social-links a {
     display: flex;
+  }
+  .social-links a, #theme-toggle {
+    padding: 1em 0.5em;
+    color: var(--black);
+    border-bottom: 4px solid transparent;
+    text-decoration: none;
   }
 
   @media (max-width: 720px) {
