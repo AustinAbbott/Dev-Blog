@@ -115,27 +115,43 @@ import ThemeToggleButton from "./ThemeToggleButton.astro";
   @media (max-width: 720px) {
     nav {
       grid-template-areas:
-        "logo social"
-        "links links";
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: auto auto;
-      gap: 1em;
-      padding: 1em 0;
+        "logo"
+        "social"
+        "links";
+      grid-template-columns: 1fr;
+      grid-template-rows: auto auto auto;
+      gap: 0.2em;
+      padding: 1.5em 0;
+      justify-items: center;
     }
 
     #IconAndTitle {
       grid-area: logo;
+      justify-content: center;
+      margin-right: 0;
+    }
+
+    /* Make profile icon larger on mobile */
+    #IconAndTitle img {
+      width: 80px;
+      height: 80px;
     }
 
     #SocialLinks {
       grid-area: social;
-      display: flex; /* Ensure visible on mobile */
+      display: flex;
+      justify-content: center;
     }
 
     #InternalLinks {
       grid-area: links;
       width: 100%;
-      justify-content: space-around; /* Distribute links evenly */
+      justify-content: center;
+      gap: 1.5em;
+    }
+
+    :global(#theme-toggle) {
+      display: none;
     }
   }
 
