@@ -18,32 +18,30 @@
 	--body-background: #fff;
 }
 html.dark {
-	--accent: #5c6dff;
-	--accent-dark: #a0a9ff;
-	--black: 238, 239, 244;
-	--gray: 160, 175, 209;
-	--gray-light: 45, 55, 72;
-	--gray-dark: 214, 222, 235;
-	--gray-gradient: #111, transparent;
-	--box-shadow: 0 2px 6px rgba(0,0,0, 50%), 0 8px 24px rgba(0,0,0, 60%),
-		0 16px 32px rgba(0,0,0, 60%);
+	--accent: #38bdf8;
+	--accent-dark: #0ea5e9;
+	--black: 248, 250, 252;
+	--gray: 148, 163, 184;
+	--gray-light: 30, 41, 59;
+	--gray-dark: 203, 213, 225;
+	--gray-gradient: #0f172a, transparent;
+	--box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
 	--surface-background: rgb(var(--gray-light));
-	--body-background: #222;
+	--body-background: #020617;
 }
 
 @media (prefers-color-scheme: dark) {
 	:root {
-		--accent: #5c6dff;
-		--accent-dark: #a0a9ff;
-		--black: 238, 239, 244;
-		--gray: 160, 175, 209;
-		--gray-light: 45, 55, 72;
-		--gray-dark: 214, 222, 235;
-		--gray-gradient: #111, transparent;
-		--box-shadow: 0 2px 6px rgba(0,0,0, 50%), 0 8px 24px rgba(0,0,0, 60%),
-			0 16px 32px rgba(0,0,0, 60%);
+		--accent: #38bdf8;
+		--accent-dark: #0ea5e9;
+		--black: 248, 250, 252;
+		--gray: 148, 163, 184;
+		--gray-light: 30, 41, 59;
+		--gray-dark: 203, 213, 225;
+		--gray-gradient: #0f172a, transparent;
+		--box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
 		--surface-background: rgb(var(--gray-light));
-		--body-background: #222;
+		--body-background: #020617;
 	}
 }
 @font-face {
