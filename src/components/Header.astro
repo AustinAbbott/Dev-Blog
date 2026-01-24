@@ -54,7 +54,7 @@ import ThemeToggleButton from "./ThemeToggleButton.astro";
     margin: 0;
     padding: 0 1em;
     background: var(--surface-background);
-    box-shadow: 0 2px 8px rgba(var(--black), 5%);
+    box-shadow: 0 0.125rem 0.5rem rgba(var(--black), 5%);
   }
 
   h2 {
@@ -91,7 +91,7 @@ import ThemeToggleButton from "./ThemeToggleButton.astro";
   nav a {
     padding: 1em 0.5em;
     color: var(--black);
-    border-bottom: 4px solid transparent;
+    border-bottom: 0.25rem solid transparent;
     text-decoration: none;
   }
 
@@ -108,11 +108,11 @@ import ThemeToggleButton from "./ThemeToggleButton.astro";
   #theme-toggle {
     padding: 1em 0.5em;
     color: var(--black);
-    border-bottom: 4px solid transparent;
+    border-bottom: 0.25rem solid transparent;
     text-decoration: none;
   }
 
-  @media (max-width: 720px) {
+  @media (max-width: 45rem) {
     nav {
       grid-template-areas:
         "logo"
@@ -133,8 +133,8 @@ import ThemeToggleButton from "./ThemeToggleButton.astro";
 
     /* Make profile icon larger on mobile */
     #IconAndTitle img {
-      width: 80px;
-      height: 80px;
+      width: 5rem;
+      height: 5rem;
     }
 
     #SocialLinks {
