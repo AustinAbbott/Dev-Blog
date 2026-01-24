@@ -62,21 +62,16 @@ const { title, description, image = "/blog-placeholder-1.jpg" } = Astro.props;
 <!-- Theme Script -->
 <script is:inline>
   const getTheme = () => {
-    if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
+    if (typeof localStorage !== "undefined" && localStorage.getItem("theme"))
       return localStorage.getItem("theme");
-    }
-    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches)
       return "dark";
-    }
     return "light";
   };
 
   const applyTheme = (theme) => {
-    if (theme === "dark") {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
+    if (theme === "dark") document.documentElement.classList.add("dark");
+    else document.documentElement.classList.remove("dark");
     localStorage.setItem("theme", theme);
   };
 
