@@ -1,5 +1,6 @@
 ---
 import HeaderLink from "./HeaderLink.astro";
+import ThemeToggleButton from "./ThemeToggleButton.astro";
 ---
 
 <header>
@@ -44,6 +45,7 @@ import HeaderLink from "./HeaderLink.astro";
           ></path></svg
         >
       </a>
+      <ThemeToggleButton />
     </div>
   </nav>
 </header>
@@ -51,8 +53,8 @@ import HeaderLink from "./HeaderLink.astro";
   header {
     margin: 0;
     padding: 0 1em;
-    background: white;
-    box-shadow: 0 2px 8px rgba(var(--black), 5%);
+    background: var(--surface-background);
+    box-shadow: 0 0.125rem 0.5rem rgba(var(--black), 5%);
   }
 
   h2 {
@@ -66,7 +68,7 @@ import HeaderLink from "./HeaderLink.astro";
   }
   nav {
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: 1fr auto 1fr;
   }
 
   nav div {
@@ -75,7 +77,7 @@ import HeaderLink from "./HeaderLink.astro";
   }
 
   #IconAndTitle {
-    justify-content: left;
+    justify-content: flex-start;
   }
 
   #InternalLinks {
@@ -83,13 +85,13 @@ import HeaderLink from "./HeaderLink.astro";
   }
 
   #SocialLinks {
-    justify-content: right;
+    justify-content: flex-end;
   }
 
   nav a {
     padding: 1em 0.5em;
     color: var(--black);
-    border-bottom: 4px solid transparent;
+    border-bottom: 0.25rem solid transparent;
     text-decoration: none;
   }
 
@@ -102,10 +104,58 @@ import HeaderLink from "./HeaderLink.astro";
   .social-links a {
     display: flex;
   }
+  .social-links a,
+  #theme-toggle {
+    padding: 1em 0.5em;
+    color: var(--black);
+    border-bottom: 0.25rem solid transparent;
+    text-decoration: none;
+  }
 
-  @media (max-width: 720px) {
-    .social-links {
+  @media (max-width: 45rem) {
+    nav {
+      grid-template-areas:
+        "logo"
+        "social"
+        "links";
+      grid-template-columns: 1fr;
+      grid-template-rows: auto auto auto;
+      gap: 0.2em;
+      padding: 1.5em 0;
+      justify-items: center;
+    }
+
+    #IconAndTitle {
+      grid-area: logo;
+      justify-content: center;
+      margin-right: 0;
+    }
+
+    /* Make profile icon larger on mobile */
+    #IconAndTitle img {
+      width: 5rem;
+      height: 5rem;
+    }
+
+    #SocialLinks {
+      grid-area: social;
+      display: flex;
+      justify-content: center;
+    }
+
+    #InternalLinks {
+      grid-area: links;
+      width: 100%;
+      justify-content: center;
+      gap: 1.5em;
+    }
+
+    :global(#theme-toggle) {
       display: none;
     }
+  }
+
+  :global(#theme-toggle) {
+    margin-left: 1em;
   }
 </style>
