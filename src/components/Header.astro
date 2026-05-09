@@ -2,7 +2,7 @@
 import HeaderLink from "./HeaderLink.astro";
 ---
 
-<header>
+<header transition:persist="site-header">
   <nav>
     <div id="IconAndTitle">
       <a href="/">
@@ -20,7 +20,7 @@ import HeaderLink from "./HeaderLink.astro";
       <HeaderLink href="/about">About</HeaderLink>
     </div>
     <div class="social-links" id="SocialLinks">
-      <a href="https://github.com/AustinAbbott" target="_blank">
+      <a href="https://github.com/AustinAbbott" target="_blank" rel="noopener noreferrer">
         <span class="sr-only">Go to Austin Abbott's GitHub</span>
         <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32"
           ><path
@@ -30,7 +30,21 @@ import HeaderLink from "./HeaderLink.astro";
         >
       </a>
 
-      <a href="https://www.linkedin.com/in/austin-abbott/" target="_blank">
+      <a href="https://x.com/keyboardJones" target="_blank" rel="noopener noreferrer">
+        <span class="sr-only">Follow Austin Abbott on X</span>
+        <svg
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+          width="32"
+          height="32"
+          ><path
+            fill="currentColor"
+            d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"
+          ></path></svg
+        >
+      </a>
+
+      <a href="https://www.linkedin.com/in/austin-abbott/" target="_blank" rel="noopener noreferrer">
         <span class="sr-only">Go to Austin Abbott's LinkedIn</span>
         <svg
           fill="currentColor"
@@ -47,6 +61,17 @@ import HeaderLink from "./HeaderLink.astro";
     </div>
   </nav>
 </header>
+<script>
+  document.addEventListener("astro:after-swap", () => {
+    const path = window.location.pathname;
+    const subpath = path.match(/[^\/]+/g);
+    document.querySelectorAll("#InternalLinks a").forEach((link) => {
+      const href = link.getAttribute("href");
+      const isActive = href === path || href === "/" + (subpath?.[0] ?? "");
+      link.classList.toggle("active", isActive);
+    });
+  });
+</script>
 <style>
   header {
     margin: 0;
@@ -55,18 +80,10 @@ import HeaderLink from "./HeaderLink.astro";
     box-shadow: 0 2px 8px rgba(var(--black), 5%);
   }
 
-  h2 {
-    margin: 0;
-    font-size: 1em;
-  }
-
-  h2 a,
-  h2 a.active {
-    text-decoration: none;
-  }
   nav {
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
   }
 
   nav div {
@@ -75,7 +92,7 @@ import HeaderLink from "./HeaderLink.astro";
   }
 
   #IconAndTitle {
-    justify-content: left;
+    justify-content: flex-start;
   }
 
   #InternalLinks {
@@ -83,7 +100,7 @@ import HeaderLink from "./HeaderLink.astro";
   }
 
   #SocialLinks {
-    justify-content: right;
+    justify-content: flex-end;
   }
 
   nav a {
@@ -98,14 +115,39 @@ import HeaderLink from "./HeaderLink.astro";
     border-bottom-color: var(--accent);
   }
 
-  .social-links,
   .social-links a {
     display: flex;
   }
 
   @media (max-width: 720px) {
-    .social-links {
-      display: none;
+    nav {
+      grid-template-columns: 1fr auto 1fr;
+      grid-template-rows: auto auto;
+    }
+
+    #IconAndTitle {
+      grid-row: 1;
+      grid-column: 1;
+    }
+
+    #SocialLinks {
+      grid-row: 1;
+      grid-column: 3;
+    }
+
+    #InternalLinks {
+      grid-row: 2;
+      grid-column: 1 / -1;
+      justify-content: center;
+    }
+
+    .social-links a svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    nav :global(a) {
+      padding: 0.75em 0.4em;
     }
   }
 </style>
