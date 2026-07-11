@@ -1,2 +1,7 @@
 /// <reference path="../.astro/types.d.ts" />
 /// <reference types="astro/client" />
+
+interface Window {
+  __setTheme?: (theme: "light" | "dark") => void;
+  __getTheme?: () => "light" | "dark";
+}

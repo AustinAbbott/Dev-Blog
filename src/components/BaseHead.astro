@@ -59,4 +59,53 @@ const { title, description, image = "/blog-placeholder-1.jpg" } = Astro.props;
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image, Astro.url)} />
 
+<script is:inline>
+  const THEME_KEY = "theme";
+
+  function getStoredTheme() {
+    try {
+      const stored = localStorage.getItem(THEME_KEY);
+      if (stored === "light" || stored === "dark") return stored;
+    } catch {}
+    return null;
+  }
+
+  function getSystemTheme() {
+    return window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light";
+  }
+
+  function getTheme() {
+    return getStoredTheme() ?? getSystemTheme();
+  }
+
+  function applyTheme(theme, persist = false) {
+    document.documentElement.classList.toggle("dark", theme === "dark");
+    if (persist) {
+      try {
+        localStorage.setItem(THEME_KEY, theme);
+      } catch {}
+    }
+  }
+
+  applyTheme(getTheme());
+
+  document.addEventListener("astro:before-swap", (event) => {
+    const theme = getTheme();
+    event.newDocument.documentElement.classList.toggle("dark", theme === "dark");
+  });
+
+  window
+    .matchMedia("(prefers-color-scheme: dark)")
+    .addEventListener("change", (event) => {
+      if (!getStoredTheme()) {
+        applyTheme(event.matches ? "dark" : "light");
+      }
+    });
+
+  window.__setTheme = (theme) => applyTheme(theme, true);
+  window.__getTheme = getTheme;
+</script>
+
 <ClientRouter />
