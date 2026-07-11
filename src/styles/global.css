@@ -28,7 +28,6 @@ html.dark {
 	--gray-dark: 203, 213, 225;
 	--bg: #0b0d12;
 	--surface: #151a21;
-	--gray-gradient: rgba(var(--gray-light), 50%), var(--bg);
 	--box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.35),
 		0 16px 32px rgba(0, 0, 0, 0.3);
 	color-scheme: dark;

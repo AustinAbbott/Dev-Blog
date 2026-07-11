@@ -61,23 +61,20 @@ const { title, description, image = "/blog-placeholder-1.jpg" } = Astro.props;
 
 <script is:inline>
   const THEME_KEY = "theme";
+  const colorScheme = window.matchMedia("(prefers-color-scheme: dark)");
 
   function getStoredTheme() {
     try {
       const stored = localStorage.getItem(THEME_KEY);
       if (stored === "light" || stored === "dark") return stored;
-    } catch {}
+    } catch {
+      // localStorage can throw in private browsing
+    }
     return null;
   }
 
-  function getSystemTheme() {
-    return window.matchMedia("(prefers-color-scheme: dark)").matches
-      ? "dark"
-      : "light";
-  }
-
   function getTheme() {
-    return getStoredTheme() ?? getSystemTheme();
+    return getStoredTheme() ?? (colorScheme.matches ? "dark" : "light");
   }
 
   function applyTheme(theme, persist = false) {
@@ -85,27 +82,34 @@ const { title, description, image = "/blog-placeholder-1.jpg" } = Astro.props;
     if (persist) {
       try {
         localStorage.setItem(THEME_KEY, theme);
-      } catch {}
+      } catch {
+        // localStorage can throw in private browsing
+      }
     }
   }
 
   applyTheme(getTheme());
 
   document.addEventListener("astro:before-swap", (event) => {
-    const theme = getTheme();
-    event.newDocument.documentElement.classList.toggle("dark", theme === "dark");
+    event.newDocument.documentElement.classList.toggle(
+      "dark",
+      getTheme() === "dark",
+    );
   });
 
-  window
-    .matchMedia("(prefers-color-scheme: dark)")
-    .addEventListener("change", (event) => {
-      if (!getStoredTheme()) {
-        applyTheme(event.matches ? "dark" : "light");
-      }
-    });
+  const handleSystemThemeChange = (event) => {
+    if (!getStoredTheme()) {
+      applyTheme(event.matches ? "dark" : "light");
+    }
+  };
+
+  if (typeof colorScheme.addEventListener === "function") {
+    colorScheme.addEventListener("change", handleSystemThemeChange);
+  } else {
+    colorScheme.addListener(handleSystemThemeChange);
+  }
 
   window.__setTheme = (theme) => applyTheme(theme, true);
-  window.__getTheme = getTheme;
 </script>
 
 <ClientRouter />
