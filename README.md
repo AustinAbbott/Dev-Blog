@@ -6,6 +6,8 @@ A minimalist blog built with Astro and hosted on Cloudflare Pages
 
 Visual snapshot tests catch unintended layout changes from Astro or dependency updates. They compare full-page screenshots of key routes against committed baselines in `tests/visual.spec.ts-snapshots/`.
 
+Baselines are produced and compared on Linux in CI. Screenshots generated on macOS may differ slightly.
+
 ### First-time setup
 
 ```bash
@@ -31,21 +33,23 @@ This builds the site, serves the production build with `astro preview`, and fail
    - **Unintended regression** — fix the CSS or layout and push again.
    - **Intentional layout change** — update the snapshots (steps below).
 
-Renovate or Astro dependency bumps may fail this check. Updating snapshots is how you approve a new visual baseline.
-
 ### Update snapshots
 
-When a layout change is intentional:
+Prefer refreshing baselines from CI so they match Linux rendering:
 
-1. On the branch with the change, run:
+1. Download the `visual-test-results` artifact from the failed job.
+2. Copy each `*-actual.png` from `test-results/` over the matching file in `tests/visual.spec.ts-snapshots/`.
+3. Commit the updated PNGs and push.
 
-   ```bash
-   npm run test:visual:update
-   ```
+For a local refresh (may still fail CI if fonts/rendering differ):
 
-2. Review the changed PNGs under `tests/visual.spec.ts-snapshots/` in your git diff.
-3. Commit the updated snapshots with your layout change.
-4. Push. CI re-runs `npm run test:visual` and should pass.
+```bash
+npm run test:visual:update
+```
+
+Review the changed PNGs, commit them with your layout change, and push. If CI still fails, replace baselines from the CI artifact as above.
+
+Renovate or Astro dependency bumps may fail this check. Updating snapshots is how you approve a new visual baseline.
 
 ### Required status check
 
