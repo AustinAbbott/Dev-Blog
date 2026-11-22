@@ -11,16 +11,16 @@ Baselines are produced and compared on Linux in CI. Screenshots generated on mac
 ### First-time setup
 
 ```bash
-npm ci
-npx playwright install chromium
+bun install
+bunx playwright install chromium
 ```
 
-Playwright browsers are downloaded separately from npm packages.
+You need [Bun](https://bun.com) for packages and scripts, and Node.js (version in `.nvmrc`) because Astro and Playwright still run on Node. Playwright browsers are downloaded separately from packages.
 
 ### Run tests
 
 ```bash
-npm run test:visual
+bun run test:visual
 ```
 
 This builds the site, serves the production build with `astro preview`, and fails if any screenshot differs from the committed baseline.
@@ -44,7 +44,7 @@ Prefer refreshing baselines from CI so they match Linux rendering:
 For a local refresh (may still fail CI if fonts/rendering differ):
 
 ```bash
-npm run test:visual:update
+bun run test:visual:update
 ```
 
 Review the changed PNGs, commit them with your layout change, and push. If CI still fails, replace baselines from the CI artifact as above.

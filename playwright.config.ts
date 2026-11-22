@@ -2,7 +2,7 @@ import { defineConfig, devices } from "@playwright/test";
 
 // Dedicated port so tests never attach to `astro dev` on the default 4321.
 const previewUrl = "http://127.0.0.1:4173";
-const previewCommand = "npx astro preview --host 127.0.0.1 --port 4173";
+const previewCommand = "bunx astro preview --host 127.0.0.1 --port 4173";
 
 export default defineConfig({
   testDir: "./tests",
@@ -33,7 +33,7 @@ export default defineConfig({
     // CI builds in a prior workflow step; locally we build here.
     command: process.env.CI
       ? previewCommand
-      : `npm run build && ${previewCommand}`,
+      : `bun run build && ${previewCommand}`,
     url: previewUrl,
     reuseExistingServer: false,
     timeout: 180_000,
