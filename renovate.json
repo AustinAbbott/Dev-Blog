@@ -1,20 +1,32 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:recommended"
+    "config:recommended",
+    "schedule:weekly",
+    ":maintainLockFilesMonthly",
+    "group:allNonMajor"
   ],
+  "minimumReleaseAge": "3 days",
+  "rebaseWhen": "behind-base-branch",
+  "lockFileMaintenance": {
+    "automerge": true
+  },
   "packageRules": [
     {
-      "matchUpdateTypes": [
-        "minor",
-        "patch"
-      ],
-      "matchCurrentVersion": "!/^0/",
+      "description": "Automerge minor, patch and digest updates when required checks pass",
+      "matchUpdateTypes": ["minor", "patch", "digest"],
       "automerge": true
+    },
+    {
+      "description": "Changing the Node.js version in .nvmrc breaks the Cloudflare Pages build. Hold these updates for manual approval.",
+      "matchManagers": ["nvm"],
+      "dependencyDashboardApproval": true
+    },
+    {
+      "description": "Hold TypeScript majors until astro check supports them",
+      "matchPackageNames": ["typescript"],
+      "matchUpdateTypes": ["major"],
+      "dependencyDashboardApproval": true
     }
-  ],
-  "lockFileMaintenance": {
-    "enabled": true,
-    "automerge": true
-  }
+  ]
 }
