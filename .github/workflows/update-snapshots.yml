@@ -1,0 +1,93 @@
+name: Update visual snapshots
+
+# Run by hand from the Actions tab when a dependency change (for example a
+# Playwright/Chromium bump) shifts rendering and the baselines need refreshing.
+# It regenerates the screenshots on the same runner image as the Visual
+# workflow, commits them to the chosen branch, and then re-runs Visual there so
+# the required "Visual snapshot tests" check reports on the new commit.
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: Branch to update (not master)
+        required: true
+        type: string
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: update-snapshots-${{ inputs.branch }}
+  cancel-in-progress: false
+
+jobs:
+  update:
+    name: Update visual snapshots
+    runs-on: ubuntu-24.04
+    env:
+      BRANCH: ${{ inputs.branch }}
+    steps:
+      - name: Refuse the default branch
+        if: inputs.branch == github.event.repository.default_branch
+        run: |
+          echo "::error::Update snapshots on a feature branch, not $BRANCH."
+          exit 1
+
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          ref: ${{ inputs.branch }}
+
+      - name: Setup Node
+        uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Build site
+        run: npm run build
+
+      - name: Regenerate snapshots
+        run: npm run test:visual:update
+
+      - name: Commit changed snapshots
+        id: commit
+        run: |
+          git add -- tests/
+          if git diff --cached --quiet; then
+            echo "No snapshot changes."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git diff --cached --stat
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "test(visual): update snapshots"
+          git push origin "HEAD:refs/heads/$BRANCH"
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      # Pushes made with GITHUB_TOKEN don't start new workflow runs, so start
+      # Visual explicitly to get the required check on the new commit.
+      - name: Re-run Visual on the branch
+        if: steps.commit.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run visual.yml --ref "$BRANCH"
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: snapshot-update-results
+          path: |
+            test-results/
+            playwright-report/
+          if-no-files-found: ignore

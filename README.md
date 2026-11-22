@@ -35,7 +35,16 @@ This builds the site, serves the production build with `astro preview`, and fail
 
 ### Update snapshots
 
-Prefer refreshing baselines from CI so they match Linux rendering:
+Prefer refreshing baselines from CI so they match Linux rendering.
+
+The quickest way is the **Update visual snapshots** workflow:
+
+1. Open **Actions** > **Update visual snapshots** > **Run workflow**.
+2. Enter the branch to update (not `master`) and run it.
+3. The workflow commits any changed PNGs to that branch and re-runs **Visual snapshot tests** on it.
+4. Review the updated images in the PR diff before you merge.
+
+To do it by hand instead:
 
 1. Download the `visual-test-results` artifact from the failed job.
 2. Copy each `*-actual.png` from `test-results/` over the matching file in `tests/visual.spec.ts-snapshots/`.
