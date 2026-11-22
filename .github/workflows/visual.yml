@@ -6,10 +6,6 @@ on:
       - master
   pull_request:
 
-# TEMPORARY (one-off baseline refresh for the Playwright 1.65 bump). Revert before merge.
-permissions:
-  contents: write
-
 jobs:
   visual:
     name: Visual snapshot tests
@@ -17,8 +13,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v7
-        with:
-          ref: ${{ github.head_ref }}
 
       - name: Setup Node
         uses: actions/setup-node@v7
@@ -35,20 +29,8 @@ jobs:
       - name: Build site
         run: npm run build
 
-      - name: Regenerate snapshots (temporary)
-        run: npm run test:visual:update
-
-      - name: Commit regenerated snapshots (temporary)
-        env:
-          BRANCH: ${{ github.head_ref }}
-        run: |
-          git add -- tests/
-          git diff --cached --stat
-          git diff --cached --quiet && exit 0
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit -m "test(visual): update snapshots for Playwright 1.65"
-          git push origin "HEAD:refs/heads/$BRANCH"
+      - name: Run visual snapshot tests
+        run: npm run test:visual
 
       - name: Upload failure artifacts
         if: failure()
