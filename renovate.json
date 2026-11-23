@@ -23,11 +23,6 @@
       "dependencyDashboardApproval": true
     },
     {
-      "description": "Cloudflare Pages reads the Bun version from its BUN_VERSION variable, not .bun-version. Hold these updates so the dashboard can be changed at the same time.",
-      "matchManagers": ["bun-version"],
-      "dependencyDashboardApproval": true
-    },
-    {
       "description": "Hold TypeScript majors until astro check supports them",
       "matchPackageNames": ["typescript"],
       "matchUpdateTypes": ["major"],
