@@ -8,7 +8,7 @@ import FormattedDate from "../components/FormattedDate.astro";
 
 const posts = (await getCollection("blog"))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-  .slice(0, 3);
+  .slice(0, 5);
 ---
 
 <!doctype html>
@@ -16,36 +16,64 @@ const posts = (await getCollection("blog"))
   <head>
     <link rel="sitemap" href="/sitemap-index.xml" />
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <style>
+      .intro h1 {
+        margin-top: 0;
+      }
+      .intro p {
+        max-width: 36rem;
+        color: var(--muted);
+        font-size: 1.0625rem;
+      }
+      .recent {
+        margin-top: 3rem;
+      }
+      .section-heading {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        margin-bottom: 0.5rem;
+      }
+      .section-heading h2 {
+        margin: 0;
+        font-size: 0.8125rem;
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      .section-heading a {
+        font-size: 0.9rem;
+        text-decoration: none;
+      }
+    </style>
   </head>
   <body>
     <Header />
     <main>
-      <section>
-        <h3 class="title">Hey there 👋</h3>
-        <p>I'm Austin Abbott, welcome to my dev blog!</p>
+      <section class="intro">
+        <h1>Hey there 👋</h1>
+        <p>
+          I'm Austin Abbott, a software engineer. Welcome to my dev blog, where I
+          keep dev notes, solutions I've found, and miscellaneous thoughts.
+        </p>
       </section>
 
-      <section>
-        <h4>Recent posts</h4>
-        <div>
-          <ul>
-            {
-              posts.map((post) => (
-                <li>
-                  {/* div prevents misaligned bullets in Firefox */}
-                  <div>
-                    <a href={`/blog/${post.id}/`}>
-                      <h5 class="title">{post.data.title}</h5>
-                      <p class="date">
-                        <FormattedDate date={post.data.pubDate} />
-                      </p>
-                    </a>
-                  </div>
-                </li>
-              ))
-            }
-          </ul>
+      <section class="recent">
+        <div class="section-heading">
+          <h2>Recent posts</h2>
+          <a href="/blog/">All posts →</a>
         </div>
+        <ul class="post-list">
+          {
+            posts.map((post) => (
+              <li>
+                <FormattedDate date={post.data.pubDate} />
+                <a href={`/blog/${post.id}/`}>{post.data.title}</a>
+              </li>
+            ))
+          }
+        </ul>
       </section>
     </main>
     <Footer />
