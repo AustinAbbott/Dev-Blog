@@ -3,8 +3,8 @@
     <svg
       class="sun-icon"
       xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
+      width="20"
+      height="20"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
@@ -26,8 +26,8 @@
     <svg
       class="moon-icon"
       xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
+      width="20"
+      height="20"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
@@ -92,19 +92,19 @@
     background: none;
     cursor: pointer;
     padding: 0.5rem;
-    color: rgb(var(--black));
-    border-radius: 50%;
+    color: var(--muted);
+    border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
     transition:
-      background-color 0.2s ease,
-      transform 0.2s ease;
+      background-color 0.15s ease,
+      color 0.15s ease;
   }
 
   button:hover {
-    background-color: rgb(var(--gray-light));
-    transform: scale(1.05);
+    color: var(--heading);
+    background-color: var(--surface);
   }
 
   .sun-icon {
